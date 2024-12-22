@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Porcentaje de Video Visto</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 20px;
+    }
+    video {
+      max-width: 100%;
+      height: auto;
+    }
+    .progress {
+      margin-top: 10px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Porcentaje de Video Visto</h1>
+  <video id="video" controls>
+    <source src="tu-video.mp4" type="video/mp4">
+    Tu navegador no soporta el elemento de video.
+  </video>
+  <div class="progress" id="progress">0% visto</div>
+
+  <script>
+    const video = document.getElementById('video');
+    const progress = document.getElementById('progress');
+
+    video.addEventListener('timeupdate', () => {
+      const percentage = ((video.currentTime / video.duration) * 100).toFixed(2);
+      progress.textContent = `${percentage}% visto`;
+    });
+
+    video.addEventListener('ended', () => {
+      progress.textContent = '100% visto';
+    });
+  </script>
+</body>
+</html>
